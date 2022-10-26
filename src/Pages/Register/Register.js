@@ -3,19 +3,20 @@ import React from "react";
 import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
   const { providerLogin, createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
-
   const handleGoogleSignin = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -32,6 +33,8 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        form.reset();
+        navigate("/");
       })
       .catch((error) => console.error(error));
   };

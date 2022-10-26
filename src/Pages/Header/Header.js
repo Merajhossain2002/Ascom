@@ -75,7 +75,7 @@ const Header = () => {
                     key={name}
                     placement={"bottom"}
                     overlay={
-                      <Tooltip id={`tooltip-${name}`}>
+                      <Tooltip id={`${name}`}>
                         Name : <strong>{name}</strong>
                       </Tooltip>
                     }
