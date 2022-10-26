@@ -8,7 +8,7 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="info" variant="dark" sticky="top">
       <Container>
         <Navbar.Brand
           className="px-2 align-items-center border rounded-pill bg-light"
