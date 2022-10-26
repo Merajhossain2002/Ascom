@@ -84,7 +84,7 @@ const Header = () => {
                   >
                     {user?.photoURL ? (
                       <img
-                        className="img-fluid mx-2 user-img rounded"
+                        className="img-fluid mx-lg-2 mt-2 mt-lg-0 user-img rounded"
                         src={`${user?.photoURL}`}
                         alt="user"
                       />
@@ -144,7 +144,7 @@ const Header = () => {
                 onClick={toggle}
                 variant="dark"
                 size="md"
-                className="text-warning me-2 mt-3 mt-lg-0"
+                className="text-white me-2 mt-3 mt-lg-0"
               >
                 <FaMoon></FaMoon>
               </Button>

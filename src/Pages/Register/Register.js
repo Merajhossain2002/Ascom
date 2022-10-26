@@ -10,28 +10,29 @@ const Register = () => {
   const { providerLogin, createUser, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // sign up using google method
   const googleProvider = new GoogleAuthProvider();
   const handleGoogleSignin = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         navigate("/");
       })
       .catch((error) => console.log(error));
   };
 
+  // sign up by github
   const githubProvider = new GithubAuthProvider();
   const handleGithubSignin = () => {
     githubLogin(githubProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         navigate("/");
       })
       .catch((error) => console.log(error));
   };
 
+  // Register method by email and password
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;

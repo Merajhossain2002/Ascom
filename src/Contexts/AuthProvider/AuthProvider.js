@@ -17,26 +17,32 @@ export const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  //   google provider
   const providerLogin = (provider) => {
     return signInWithPopup(auth, provider);
   };
 
+  //   github provider
   const githubLogin = (provider) => {
     return signInWithPopup(auth, provider);
   };
 
+  //   create user with email and password
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  //   log in with email and password
   const logIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  //   logout method
   const logout = () => {
     return signOut(auth);
   };
 
+  //   observer function
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
