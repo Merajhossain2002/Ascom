@@ -17,8 +17,10 @@ const Header = () => {
   const [themeToggle, setThemeToggle] = useState(true);
 
   const toggle = () => {
-    if (!themeToggle) {
-      setThemeToggle(themeToggle);
+    if (themeToggle) {
+      setThemeToggle(!themeToggle);
+    } else if (themeToggle !== true){
+      setThemeToggle(!themeToggle);
     }
   };
   return (
