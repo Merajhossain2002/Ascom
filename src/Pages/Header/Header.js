@@ -17,12 +17,14 @@ const Header = () => {
   const userName = user?.displayName;
   const currentName = [userName];
 
+  // log out btn function
   const handleLogout = () => {
     logout()
       .then(() => {})
       .catch((error) => console.error(error));
   };
 
+  // theme toggle state and function
   const [themeToggle, setThemeToggle] = useState(true);
   const toggle = () => {
     if (themeToggle) {
