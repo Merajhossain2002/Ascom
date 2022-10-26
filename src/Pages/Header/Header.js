@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaUser, FaMoon, FaSun } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -12,14 +12,22 @@ import { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
+
+  const userName = user?.displayName;
+  const currentName = [userName];
+
+  const handleLogout = () => {
+    logout()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
 
   const [themeToggle, setThemeToggle] = useState(true);
-
   const toggle = () => {
     if (themeToggle) {
       setThemeToggle(!themeToggle);
-    } else if (themeToggle !== true){
+    } else if (themeToggle !== true) {
       setThemeToggle(!themeToggle);
     }
   };
@@ -62,13 +70,13 @@ const Header = () => {
              --------------------------------------------------------------------- */}
             {user?.uid ? (
               <>
-                {["bottom"].map((placement) => (
+                {currentName.map((name) => (
                   <OverlayTrigger
-                    key={placement}
-                    placement={placement}
+                    key={name}
+                    placement={"bottom"}
                     overlay={
-                      <Tooltip id={`tooltip-${placement}`}>
-                        Name : <strong>{placement}</strong>.
+                      <Tooltip id={`tooltip-${name}`}>
+                        Name : <strong>{name}</strong>
                       </Tooltip>
                     }
                   >
@@ -79,15 +87,19 @@ const Header = () => {
                         alt="user"
                       />
                     ) : (
-                      <img
-                        className="img-fluid mx-2 user-img rounded"
-                        src="https://www.labelprint.co.za/wp-content/uploads/2018/11/user-icon-image-placeholder-300-grey.jpg"
-                        alt="user"
-                      />
+                      <FaUser
+                        style={{ height: "2.4rem", background: "white" }}
+                        className="img-fluid mx-2 user-img p-2 rounded"
+                      ></FaUser>
                     )}
                   </OverlayTrigger>
                 ))}
-                <Button variant="light" size="md" className="me-2 mt-3 mt-lg-0">
+                <Button
+                  onClick={handleLogout}
+                  variant="light"
+                  size="md"
+                  className="me-2 mt-3 mt-lg-0"
+                >
                   <Link className="text-decoration-none text-info ">
                     Log Out
                   </Link>

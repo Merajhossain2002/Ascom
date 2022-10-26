@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { providerLogin } = useContext(AuthContext);
+  const { providerLogin, createUser } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -20,10 +20,26 @@ const Register = () => {
       .catch((error) => console.log(error));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = e.target.name.value;
+    const photoUrl = e.target.url.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="container ">
       <div className=" row mx-auto justify-content-center py-5 my-5 shadow form-box p-3 rounded-3 ">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Text className="d-block mb-2">Sign Up With : </Form.Text>
           <Form.Group className="mb-2">
             <Button
@@ -42,19 +58,34 @@ const Register = () => {
           </Form.Text>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="Your Full Name" required />
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Your Full Name"
+              required
+            />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicImage">
-            <Form.Label>Your Image</Form.Label>
-            <Form.Control type="file" placeholder="Your Full Name" required />
+          <Form.Group className="mb-3" controlId="formBasicUrl">
+            <Form.Label>Photo URL</Form.Label>
+            <Form.Control type="text" name="url" placeholder="Your URL" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" required />
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              required
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" required />
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
           </Form.Group>
           <Button
             className="border-dark w-100 border-2"
