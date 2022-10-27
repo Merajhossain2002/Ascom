@@ -3,7 +3,6 @@ import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const CourseCard = (course) => {
-  console.log(course);
   const { id, title, picture } = course.course;
   return (
     <Col className="mx-auto shadow p-3 rounded-3 mb-5" lg="5" xs="12" sm="12">

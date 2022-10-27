@@ -10,7 +10,6 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
-import LeftSide from "../Shared/LeftSide";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
