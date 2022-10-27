@@ -9,7 +9,8 @@ import Header from "../Shared/Header/Header";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { providerLogin, createUser, githubLogin } = useContext(AuthContext);
+  const { providerLogin, createUser, githubLogin, updateUserProfile } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   // sign up using google method
@@ -48,12 +49,23 @@ const Register = () => {
         const user = result.user;
         setError("");
         form.reset();
+        handleUpdateUserProfile(name, photoUrl);
         navigate("/");
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
+  };
+
+  const handleUpdateUserProfile = (name, photoUrl) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoUrl,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => console.error(error));
   };
 
   return (

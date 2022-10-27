@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import Header from "../Shared/Header/Header";
 import "./login.css";
@@ -13,6 +13,8 @@ const Login = () => {
   const googleProvider = new GoogleAuthProvider();
   const { logIn, providerLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   // google sign in method
   const handleGoogleSignin = () => {
@@ -20,7 +22,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
@@ -32,7 +34,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
@@ -51,7 +53,7 @@ const Login = () => {
         console.log(user);
         form.reset();
         setError("");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((e) => {
         console.error(e);

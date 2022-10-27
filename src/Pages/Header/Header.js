@@ -83,18 +83,11 @@ const Header = () => {
                       </Tooltip>
                     }
                   >
-                    {user?.photoURL ? (
-                      <img
-                        className="img-fluid mx-lg-2 mt-2 mt-lg-0 user-img rounded"
-                        src={`${user?.photoURL}`}
-                        alt="user"
-                      />
-                    ) : (
-                      <FaUser
-                        style={{ height: "2.4rem", background: "white" }}
-                        className="img-fluid mx-2 user-img p-2 rounded"
-                      ></FaUser>
-                    )}
+                    <img
+                      className="img-fluid mx-lg-2 mt-2 mt-lg-0 user-img rounded"
+                      src={`${user?.photoURL} || https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg`}
+                      alt="user"
+                    />
                   </OverlayTrigger>
                 ))}
                 <Button
