@@ -32,7 +32,7 @@ export const routes = createBrowserRouter([
         path: "/singleCourse/:id",
         element: <SingleCourse></SingleCourse>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singleCourse/${params.id}`),
+          fetch(`https://ascom-server.vercel.app/singleCourse/${params.id}`),
       },
     ],
   },
@@ -52,7 +52,7 @@ export const routes = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/checkout/${params.id}`),
+      fetch(`https://ascom-server.vercel.app/checkout/${params.id}`),
   },
   {
     path: "/login",
