@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import Header from "../Shared/Header/Header";
 
 const Register = () => {
+  const [error, setError] = useState("");
   const { providerLogin, createUser, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -41,25 +42,18 @@ const Register = () => {
     const photoUrl = e.target.url.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(
-      name,
-      photoUrl,
-      email,
-      password,
-      typeof name,
-      typeof photoUrl,
-      typeof email,
-      typeof password
-    );
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setError("");
         form.reset();
         navigate("/");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
   };
 
   return (
@@ -126,6 +120,7 @@ const Register = () => {
             >
               Submit
             </Button>
+            <Form.Text className="d-block text-danger mb-2">{error}</Form.Text>
             <Form.Text className="d-block">
               <Link className="text-decoration-none text-dark" to={"/login"}>
                 Already have an account ? Login

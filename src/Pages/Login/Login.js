@@ -1,5 +1,5 @@
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
@@ -9,6 +9,7 @@ import Header from "../Shared/Header/Header";
 import "./login.css";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const { logIn, providerLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const Login = () => {
       .catch((error) => console.log(error));
   };
 
-  // sign in method by email and password
+  // login method by email and password
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -49,9 +50,13 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        setError("");
         navigate("/");
       })
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        console.error(e);
+        setError(e.message);
+      });
   };
 
   return (
@@ -105,6 +110,7 @@ const Login = () => {
             >
               Submit
             </Button>
+            <Form.Text className="d-block text-danger mb-2">{error}</Form.Text>
             <Form.Text className="d-block">
               <Link className="text-decoration-none text-dark" to={"/register"}>
                 New to Ascom ? Register
