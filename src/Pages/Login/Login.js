@@ -5,6 +5,7 @@ import { Button, Form } from "react-bootstrap";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
+import Header from "../Shared/Header/Header";
 import "./login.css";
 
 const Login = () => {
@@ -54,62 +55,65 @@ const Login = () => {
   };
 
   return (
-    <div className="container ">
-      <div className=" row mx-auto justify-content-center pt-5 mt-5 shadow form-box p-3 rounded-3 ">
-        <Form onSubmit={handleLogin}>
-          <Form.Text className="d-block mb-2">Login With : </Form.Text>
-          <Form.Group className="mb-2">
+    <>
+      <Header />
+      <div className="container ">
+        <div className=" row mx-auto justify-content-center pt-5 mt-5 shadow form-box p-3 rounded-3 ">
+          <Form onSubmit={handleLogin}>
+            <Form.Text className="d-block mb-2">Login With : </Form.Text>
+            <Form.Group className="mb-2">
+              <Button
+                onClick={handleGoogleSignin}
+                className="border-2 mb-2 border-dark w-100"
+                variant="light"
+              >
+                <FaGoogle></FaGoogle> Google
+              </Button>
+              <Button
+                onClick={handleGithubSignin}
+                className="border-2 border-dark w-100"
+                variant="light"
+              >
+                <FaGithub></FaGithub> Github
+              </Button>
+            </Form.Group>
+            <Form.Text className="d-block mb-2">
+              Or Login with E-mail and Password :{" "}
+            </Form.Text>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+              />
+            </Form.Group>
             <Button
-              onClick={handleGoogleSignin}
-              className="border-2 mb-2 border-dark w-100"
+              className="border-dark w-100 border-2"
               variant="light"
+              type="submit"
             >
-              <FaGoogle></FaGoogle> Google
+              Submit
             </Button>
-            <Button
-              onClick={handleGithubSignin}
-              className="border-2 border-dark w-100"
-              variant="light"
-            >
-              <FaGithub></FaGithub> Github
-            </Button>
-          </Form.Group>
-          <Form.Text className="d-block mb-2">
-            Or Login with E-mail and Password :{" "}
-          </Form.Text>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
-          </Form.Group>
-          <Button
-            className="border-dark w-100 border-2"
-            variant="light"
-            type="submit"
-          >
-            Submit
-          </Button>
-          <Form.Text className="d-block">
-            <Link className="text-decoration-none text-dark" to={"/register"}>
-              New to Ascom ? Register
-            </Link>
-          </Form.Text>
-        </Form>
+            <Form.Text className="d-block">
+              <Link className="text-decoration-none text-dark" to={"/register"}>
+                New to Ascom ? Register
+              </Link>
+            </Form.Text>
+          </Form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
