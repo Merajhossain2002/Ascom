@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = () => {
   const premium = useLoaderData();
-  console.log(premium);
   const { price, courseName } = premium;
   const handleCheckout = () => {
     toast.success(
