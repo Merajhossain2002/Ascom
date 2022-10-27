@@ -13,12 +13,15 @@ const LeftSide = () => {
       .then((data) => setCourse(data));
   }, []);
   return (
-    <div>
+    <div className="d-none d-lg-block">
       <h4 className="mt-5">Total Course: {course.length} </h4>
       {course.map((singleCourse) => {
         return (
           <li key={singleCourse.id} className="mt-2">
-            <Link to={"/singleCourse"} className="text-dark text-decoration-none">
+            <Link
+              to={`/singleCourse/${singleCourse.id}`}
+              className="text-dark text-decoration-none"
+            >
               {singleCourse.title}
             </Link>
           </li>

@@ -10,6 +10,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { useContext } from "react";
 import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import LeftSide from "../Shared/LeftSide";
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -67,6 +68,7 @@ const Header = () => {
             <Link to={"/blog"} className="text-decoration-none text-white me-2">
               Blog
             </Link>
+
             {/* -----------------------------------------------------------------
             user login and logout state change toggle. if login then hide login and register btn or if user sign in then show user photo and sign out btn.
              --------------------------------------------------------------------- */}
