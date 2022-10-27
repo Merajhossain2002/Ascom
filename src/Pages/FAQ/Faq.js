@@ -24,7 +24,7 @@ const Faq = () => {
             </Accordion.Header>
             <Accordion.Body>
               its easy to purchase at ascome. just click on courses choose your
-              course and click on get premimum access and purchase.
+              course and click on get premium access and purchase.
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
